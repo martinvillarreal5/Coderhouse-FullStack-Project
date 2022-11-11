@@ -12,11 +12,10 @@ export const serverConfig = {
 };
 
 export const databaseConfig = {
-  mongoDbUrl: `mongodb+srv://VillarrealDev:${
+  mongoDbUrl:
     node_env === "production"
-      ? process.env.MONGODBPASSWORD
-      : process.env.MONGODBPASSWORD_DEV
-  }@cluster0.oc4hq9p.mongodb.net/?retryWrites=true&w=majority`,
+      ? process.env.MONGOATLAS_URL
+      : process.env.MONGOATLAS_URL_DEV,
 };
 
 export const mailerConfig = {
