@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { databaseConfig } from "../../config/index.js";
 import logger from "../../lib/logger.js";
-import { AppError } from "../../lib/errorHandler.js";
+import { AppError } from "../../lib/error-handler.js";
 
 await mongoose
   .connect(databaseConfig.mongoDbUrl)

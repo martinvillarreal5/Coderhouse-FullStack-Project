@@ -1,6 +1,6 @@
 import multer from "multer";
-import { AppError } from "../../lib/errorHandler.js";
-import { getProductById } from "../../services/productServices.js";
+import { AppError } from "../../lib/error-handler.js";
+import { getProductById } from "../../services/product-services.js";
 import fs from "fs";
 
 const avatarStorage = multer.diskStorage({

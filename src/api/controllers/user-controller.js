@@ -1,4 +1,4 @@
-import * as userServices from "../../services/userServices.js";
+import * as userServices from "../../services/user-services.js";
 
 const getUserInfo = (req, res, next) => {
   try {

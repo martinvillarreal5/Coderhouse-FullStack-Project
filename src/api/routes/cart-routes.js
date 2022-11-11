@@ -6,7 +6,7 @@ import {
   addProductToCart,
   deleteCart,
   removeProductFromCart,
-} from "../controllers/cartController.js";
+} from "../controllers/cart-controller.js";
 import { ensureAuth, ensureAdminAuth } from "../middleware/auth.js";
 
 const router = Router();

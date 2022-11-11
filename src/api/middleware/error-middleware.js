@@ -1,5 +1,5 @@
 import logger from "../../lib/logger.js";
-import { errorHandler } from "../../lib/errorHandler.js";
+import { errorHandler } from "../../lib/error-handler.js";
 
 const handleRouteErrors = async (error, req, res) => {
   if (error.name === "CastError") {

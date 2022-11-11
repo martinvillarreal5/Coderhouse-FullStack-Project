@@ -1,6 +1,6 @@
 import CartRepository from "../data-access/repositories/cart-repository.js";
 import ProductRepository from "../data-access/repositories/product-repository.js";
-import { AppError } from "../lib/errorHandler.js";
+import { AppError } from "../lib/error-handler.js";
 import logger from "../lib/logger.js";
 
 const getCartById = async (id) => {

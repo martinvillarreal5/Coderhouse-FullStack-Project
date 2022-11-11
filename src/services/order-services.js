@@ -1,6 +1,6 @@
 import orderRepository from "../data-access/repositories/order-repository.js";
 import cartRepository from "../data-access/repositories/cart-repository.js"; //? Should i use the service intead?
-import { AppError } from "../lib/errorHandler.js";
+import { AppError } from "../lib/error-handler.js";
 import { sendNewOrderMail } from "../lib/mailer.js";
 
 export const getOrders = async (dataObject) => {

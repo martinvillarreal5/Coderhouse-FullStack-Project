@@ -3,8 +3,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import middleware from "./middleware/middlewares.js";
-import handleRouteErrors from "./middleware/errorMiddleware.js";
+import middleware from "./middleware/misc-middleware.js";
+import handleRouteErrors from "./middleware/error-middleware.js";
 import routes from "./routes/index.js";
 import { serverConfig, databaseConfig, node_env } from "../config/index.js";
 import initializePassport from "./utils/passport.js";
@@ -55,7 +55,7 @@ export default function initializeExpressApp() {
 
   initializePassport(expressApp);
 
-  //expressApp.use(middleware.requestLogger);
+  expressApp.use(middleware.requestLogger);
   expressApp.get("/", (req, res) => {
     res.send("Hello World!");
   });

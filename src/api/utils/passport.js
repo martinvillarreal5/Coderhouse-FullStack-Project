@@ -1,6 +1,6 @@
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
-import { getByEmail, getUserById } from "../../services/userServices.js";
+import { getByEmail, getUserById } from "../../services/user-services.js";
 import passport from "passport";
 
 function verifyPassword(plainPassword, hashedPassword) {

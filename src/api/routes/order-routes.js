@@ -3,7 +3,7 @@ import {
   getUserOrders,
   createOrder,
   getAllOrders,
-} from "../controllers/orderController.js";
+} from "../controllers/order-controller.js";
 import { ensureAuth, ensureAdminAuth } from "../middleware/auth.js";
 
 const router = Router();

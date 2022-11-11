@@ -6,7 +6,7 @@ import {
   postLogin,
   postRegister,
   postLogout,
-} from "../controllers/userController.js";
+} from "../controllers/user-controller.js";
 import { ensureAuth, ensureAdminAuth } from "../middleware/auth.js";
 import { avatarUpload } from "../middleware/multer.js";
 
