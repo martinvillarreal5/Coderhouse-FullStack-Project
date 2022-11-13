@@ -15,24 +15,14 @@ const getCarts = async () => {
   return await CartRepository.getAll();
 };
 
-const actualizeCartProducts = async (products) => {
-  //? Instead of doing this, when each product gets updated/deleted also update the products in all carts somehow?
-  //? Maybe populate can do this easier?
-  const productIds = products.map((product) => {
-    return product.productId;
-  });
-  return await ProductRepository.getByIds(productIds); // Returns the actualized products
-  //? will not return any product that doesnt exists in the database
-};
-
 const removeProductFromCart = async (email, productId) => {
   const existingProduct = await ProductRepository.getById(productId);
   if (!existingProduct) {
     throw new AppError(
       "Invalid-Cart-Product",
       "Product to add doesn't exist in the database",
-      true,
-      400
+      400,
+      true
     );
   }
   const cart = await CartRepository.getOne({ email: email });
@@ -40,8 +30,8 @@ const removeProductFromCart = async (email, productId) => {
     throw new AppError(
       "Invalid-Cart",
       "User doesn't have a shopping cart yet",
-      true,
-      400
+      400,
+      true
     );
   }
   const productIndex = cart.products.findIndex((product) => {
@@ -51,8 +41,8 @@ const removeProductFromCart = async (email, productId) => {
     throw new AppError(
       "Invalid-Cart-Product",
       "Product to remove is not in the cart",
-      true,
-      400
+      400,
+      true
     );
   }
   logger.info(
@@ -69,8 +59,8 @@ const addProductToCart = async (email, productData) => {
     throw new AppError(
       "Invalid-Quantity",
       "The quantity of the product to add to cart is a non positive value",
-      true,
-      400
+      400,
+      true
     );
   }
   const existingProduct = await ProductRepository.getById(productId);
@@ -78,8 +68,8 @@ const addProductToCart = async (email, productData) => {
     throw new AppError(
       "Invalid-Cart-Product",
       "Product to add doesn't exist in the database",
-      true,
-      400
+      400,
+      true
     );
   }
   const cart = await CartRepository.getOne({ email: email });
@@ -144,5 +134,4 @@ export default {
   addProductToCart,
   removeProductFromCart,
   deleteCart,
-  actualizeCartProducts,
 };
