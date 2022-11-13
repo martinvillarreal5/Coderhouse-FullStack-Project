@@ -23,16 +23,21 @@ class BaseRepository {
 
   async getOne(paramsObject) {
     return await this.model.findOne(paramsObject).exec();
-    //? findOne returns null when no document satisfies the field in the filter
-    //! But if the specified field in the filter does not exist,
+    //? returns null when no document satisfies the filter object
+    //! But if a specified field in the filter does not exist,
     //! (for example: because of a typo), MongoDB returns an arbitrary document.
     //! This can cause some really bad bugs and security issues. Check strict schema mode
+    //! find method has the same problem
+  }
+
+  async getMany(paramsObject) {
+    return await this.model.find(paramsObject).exec();
+    //? returns an empty array if it didnt found a doc
   }
 
   async getAll() {
     return await this.model.find({}).exec();
-    // ? find returns a empty array if didnt found a doc
-    //! find method has the same problem as findOne above
+    //? returns an empty array if it didnt found a doc
   }
 
   async create(object) {
