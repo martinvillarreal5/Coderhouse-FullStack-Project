@@ -1,5 +1,5 @@
 import logger from "./lib/logger.js";
-import { AppError, errorHandler } from "./lib/errorHandler.js";
+import { AppError, errorHandler } from "./lib/error-handler.js";
 import { startWebServer } from "./api/server.js";
 
 async function start() {
@@ -16,6 +16,6 @@ start()
   })
   .catch((error) => {
     errorHandler.handleError(
-      new AppError("startup-failure", error.message, 500, false, error)
+      new AppError("startup-failure", error.message, 500, false)
     );
   });
