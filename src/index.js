@@ -3,9 +3,6 @@ import { AppError, errorHandler } from "./lib/error-handler.js";
 import { startWebServer } from "./api/server.js";
 
 async function start() {
-  // Array of entry point is being used to support more entry-points
-  // kinds like message queue, scheduled job, etc.
-  // TODO check use cases
   logger.info(`The app is starting`);
   return Promise.all([startWebServer()]);
 }

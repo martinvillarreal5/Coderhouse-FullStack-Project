@@ -9,7 +9,6 @@ const messageSchema = new mongoose.Schema(
     origin: {
       type: String,
       required: true,
-      // TODO must be "user" or "system"
     },
     body: {
       type: String,
