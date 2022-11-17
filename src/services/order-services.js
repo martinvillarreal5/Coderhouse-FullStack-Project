@@ -3,8 +3,12 @@ import cartRepository from "../data-access/repositories/cart-repository.js"; //?
 import { AppError } from "../lib/error-handler.js";
 import { sendNewOrderMail } from "../lib/mailer.js";
 
-export const getOrders = async (dataObject) => {
-  return await orderRepository.getAll(dataObject);
+export const getOrdersByEmail = async (email) => {
+  return await orderRepository.getMany({ email: email });
+};
+
+export const getAllOrders = async () => {
+  return await orderRepository.getAll();
 };
 
 export const createOrder = async (user) => {
@@ -29,11 +33,6 @@ export const createOrder = async (user) => {
   return newOrder;
 };
 
-export const updateOrderStatus = async (newState) => {
-  return await orderRepository.updateById({ state: newState });
-};
-
-export const deleteOrder = async (id) => {
-  await orderRepository.deleteById(id);
-  return;
+export const updateOrderStatus = async (id, newState) => {
+  return await orderRepository.updateById(id, { state: newState });
 };
