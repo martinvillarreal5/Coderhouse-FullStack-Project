@@ -8,7 +8,8 @@ export const loggerConfig = {
 
 export const serverConfig = {
   port: node_env === "production" ? process.env.PORT : process.env.PORT_DEV,
-  secret: process.env.SECRET,
+  secret:
+    node_env === "production" ? process.env.SECRET : process.env.SECRET_DEV,
 };
 
 export const databaseConfig = {
@@ -25,6 +26,6 @@ export const mailerConfig = {
       : process.env.MAILER_EMAIL_DEV,
   password:
     node_env === "production"
-      ? process.env.MAILER_PASS
-      : process.env.MAILER_PASS_DEV,
+      ? process.env.MAILER_EMAIL_PASS
+      : process.env.MAILER_EMAIL_PASS_DEV,
 };
