@@ -15,7 +15,7 @@ export const createOrder = async (req, res, next) => {
 
 export const getUserOrders = async (req, res, next) => {
   try {
-    const orders = await orderServices.getOrders({ email: req.user.email });
+    const orders = await orderServices.getOrdersByEmail(req.user.email);
     res.status(200).json(orders);
   } catch (error) {
     next(error);
@@ -24,7 +24,7 @@ export const getUserOrders = async (req, res, next) => {
 
 export const getAllOrders = async (req, res, next) => {
   try {
-    const orders = await orderServices.getOrders();
+    const orders = await orderServices.getAllOrders();
     res.status(200).json(orders);
   } catch (error) {
     next(error);
