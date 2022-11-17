@@ -1,6 +1,7 @@
 # Coderhouse Final Project
 
-Welcome to my MERN stack project for the Coderhouse Full Stack Course. This repository is for the Backend part.
+Welcome to my MERN stack project for the Coderhouse Full Stack Course, a fake ecommerce application.
+This repository is for the Backend part.
 
 ## Requirements
 
@@ -25,9 +26,9 @@ Welcome to my MERN stack project for the Coderhouse Full Stack Course. This repo
 
 ## Development Dependencies
 
-- [eslint]()
-- [nodemon]()
-- [pino-pretty]()
+- [eslint](https://www.npmjs.com/package/eslint)
+- [nodemon](https://www.npmjs.com/package/nodemon)
+- [pino-pretty](https://www.npmjs.com/package/pino-pretty)
 
 ## Installation
 
