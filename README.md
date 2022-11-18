@@ -1,12 +1,12 @@
 # Coderhouse Final Project
 
-Welcome to my MERN stack project for the Coderhouse Full Stack Course, a fake ecommerce application.
+Welcome to my MERN stack project for the Coderhouse Full Stack Course, a pseudo-ecommerce application.
 This repository is for the Backend part.
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/en/) version 16.14.2 or later
-- You'll need to create a database using [Mongo Atlas](https://www.mongodb.com/atlas/database) beforehand
+- [Node.js](https://nodejs.org/en/) version 16.14.2 or later.
+- You'll need to create a database using [Mongo Atlas](https://www.mongodb.com/atlas/database) beforehand.
 
 ## Dependencies
 
@@ -38,7 +38,7 @@ Download the project or clone the repository, then install the dependencies usin
 npm install
 ```
 
-After intalling the dependencies you'll have to set a .env file the root directory with the following variables (for more information check [dotenv](https://www.npmjs.com/package/dotenv)):
+After intalling the dependencies you'll have to set a .env file in the root directory with the following variables (for more information check [dotenv](https://www.npmjs.com/package/dotenv)):
 
 - A variable to determine in what kind of eviroment the app will be running in.
 
@@ -46,7 +46,7 @@ After intalling the dependencies you'll have to set a .env file the root directo
 NODE_ENV = Either "production" or "development"
 ```
 
-- The rest of the variables needed will depend on the node enviroment
+- The rest of the variables needed will depend on the node enviroment.
 - For production the configuration will use:
 
 ```
