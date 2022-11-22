@@ -15,7 +15,7 @@ router.post("/", ensureAuth, addProductToCart);
 router.get("/", ensureAuth, getCart);
 router.get("/admin/all", ensureAdminAuth, getCarts);
 router.get("/admin/:id/", ensureAdminAuth, getCartById);
-router.delete("/remove-product/:id", ensureAuth, removeProductFromCart);
+router.delete("/product/:id", ensureAuth, removeProductFromCart);
 router.delete("admin/:id", ensureAdminAuth, deleteCart);
 
 export default router;

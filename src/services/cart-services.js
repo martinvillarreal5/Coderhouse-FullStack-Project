@@ -16,20 +16,11 @@ const getCarts = async () => {
 };
 
 const removeProductFromCart = async (email, productId) => {
-  const existingProduct = await ProductRepository.getById(productId);
-  if (!existingProduct) {
-    throw new AppError(
-      "Invalid-Cart-Product",
-      "Product to add doesn't exist in the database",
-      400,
-      true
-    );
-  }
   const cart = await CartRepository.getOne({ email: email });
   if (!cart) {
     throw new AppError(
       "Invalid-Cart",
-      "User doesn't have a shopping cart yet",
+      "User doesn't have a shopping cart yet.",
       400,
       true
     );
@@ -40,14 +31,21 @@ const removeProductFromCart = async (email, productId) => {
   if (productIndex < 0) {
     throw new AppError(
       "Invalid-Cart-Product",
-      "Product to remove is not in the cart",
+      "Product to remove is not in the cart.",
       400,
       true
     );
   }
+  const existingProduct = await ProductRepository.getById(productId);
+  if (!existingProduct) {
+    logger.warn(
+      { productId: productId },
+      "Product to remove doesn't exist in the database"
+    );
+  }
   logger.info(
-    { cart: cart, productId: productId },
-    "Removing Product from Cart"
+    { cartId: cart._id, productId: productId },
+    "Removing Product from Cart."
   );
   return await CartRepository.removeProduct(cart._id, productId);
 };
@@ -58,7 +56,7 @@ const addProductToCart = async (email, productData) => {
   if (quantity < 1) {
     throw new AppError(
       "Invalid-Quantity",
-      "The quantity of the product to add to cart is a non positive value",
+      "The quantity of the product to add to cart is a non positive value.",
       400,
       true
     );
@@ -67,7 +65,7 @@ const addProductToCart = async (email, productData) => {
   if (!existingProduct) {
     throw new AppError(
       "Invalid-Cart-Product",
-      "Product to add doesn't exist in the database",
+      "Product to add doesn't exist in the database.",
       400,
       true
     );
@@ -82,7 +80,7 @@ const addProductToCart = async (email, productData) => {
       //product is already in cart
       const cartProduct = cart.products[productIndex];
       logger.info(
-        { cart: cart, productId: productId, quantityToAdd: quantity },
+        { cartId: cart._id, productId: productId, quantityToAdd: quantity },
         "Adding Product to Cart: increasing existing product quantity."
       );
       return await CartRepository.updateProductQuantity(
@@ -94,7 +92,7 @@ const addProductToCart = async (email, productData) => {
     //product is not in the cart
     logger.info(
       { cart: cart, productId: productId, quantityToAdd: quantity },
-      "Adding Product to Cart: adding new porduct."
+      "Adding Product to Cart: adding new product."
     );
     return await CartRepository.addProduct(cart._id, {
       productId: productId,
