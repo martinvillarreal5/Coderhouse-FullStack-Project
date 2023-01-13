@@ -1,7 +1,7 @@
 import logger from "../../lib/logger.js";
 import { errorHandler } from "../../lib/error-handler.js";
 
-const handleRouteErrors = async (error, req, res) => {
+const handleRouteErrors = async (error, req, res, next) => {
   if (error.name === "CastError") {
     logger.debug("Cast Error in route");
     error.HTTPStatus = 400;
