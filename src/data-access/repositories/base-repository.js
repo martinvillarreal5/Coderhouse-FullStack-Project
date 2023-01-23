@@ -48,11 +48,11 @@ class BaseRepository {
     return await modelInstance.save();
   }
 
-  async updateById(id, data) {
+  async updateById(id, dataObject) {
     return await this.model.findByIdAndUpdate(
       id,
       {
-        $set: data,
+        $set: dataObject,
       },
       {
         runValidators: true,

@@ -52,7 +52,9 @@ const normalizeError = (errorToHandle) => {
     "general-error",
     `Error Handler received a none error instance with type - ${inputType}, value - ${util.inspect(
       errorToHandle
-    )}`
+    )}`,
+    500,
+    true
   );
 };
 
