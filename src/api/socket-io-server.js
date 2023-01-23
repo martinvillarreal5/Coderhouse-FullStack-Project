@@ -1,8 +1,8 @@
 import { Server as IoServer } from "socket.io";
 import passport from "passport";
 import logger from "../lib/logger.js";
-import { AppError } from "../lib/error-handler.js";
 import sessionMiddleware from "./middleware/session-middleware.js";
+import { socketAuth } from "./middleware/socket-io-middleware.js";
 import { node_env } from "../config/index.js";
 import * as messageServices from "../services/message-services.js";
 
@@ -24,34 +24,14 @@ const startSocketIoServer = async (expressServer) => {
   io.use(wrap(passport.initialize()));
   io.use(wrap(passport.session()));
 
+  io.use(socketAuth);
+
   // TODO Set an error handling middleware
-
-  io.use((socket, next) => {
-    const req = socket.request;
-    logger.info({
-      reqSession: req.session,
-      reqUser: req.user,
-      reqIsAuth: req.isAuthenticated(),
-    });
-    if ((req.session || req.user) && req.isAuthenticated()) {
-      // TODO test if should use req .session or .user or only req.isAuth
-      next();
-    } else {
-      next(
-        new AppError(
-          "unauthenticated-user",
-          "User is not authenticated",
-          401,
-          true
-        )
-      );
-    }
-  });
-
   // TODO do error handling for events
+
   let allUsers = [];
   let chatRoom = ""; // TODO Refactor to only use on roomname
-  const CHAT_BOT = "System"; // Add this
+  const CHAT_BOT = "System";
 
   io.on("connection", async (socket) => {
     logger.info("New User Connection");
