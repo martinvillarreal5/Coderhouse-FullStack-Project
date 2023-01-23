@@ -28,4 +28,4 @@ messageSchema.set("toJSON", {
   },
 });
 
-export default mongoose.model("Messagte", messageSchema);
+export default mongoose.model("Message", messageSchema);
