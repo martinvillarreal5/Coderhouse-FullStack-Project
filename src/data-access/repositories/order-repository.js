@@ -1,5 +1,5 @@
 import BaseRepository from "./base-repository.js";
-import OrderModel from "../models/cart-model.js";
+import OrderModel from "../models/order-model.js";
 
 class OrderRepository extends BaseRepository {
   constructor() {
