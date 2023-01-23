@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ensureAdminAuth } from "../middleware/auth.js";
-import { pictureUpload } from "../middleware/multer.js";
+import { pictureUpload, updatePictureUpload } from "../middleware/multer.js";
 import {
   getProducts,
   getProductById,
@@ -16,13 +16,17 @@ router.get("/:id", getProductById);
 router.post(
   "/admin/",
   ensureAdminAuth,
-  pictureUpload.single("picture"),
+  //pictureUpload.single("picture"),
+  pictureUpload.fields([
+    { name: "picture", maxCount: 1 },
+    { name: "backPicture", maxCount: 1 },
+  ]),
   createProduct
 );
 router.put(
   "/admin/:id",
   ensureAdminAuth,
-  pictureUpload.single("picture"),
+  updatePictureUpload.single("picture"),
   updateProduct
 );
 router.delete("/admin/:id", ensureAdminAuth, deleteProduct);

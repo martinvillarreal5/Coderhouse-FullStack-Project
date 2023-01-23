@@ -18,11 +18,19 @@ export const getProducts = async (req, res, next) => {
 };
 export const createProduct = async (req, res, next) => {
   try {
-    if (!req.file) {
+    if (!req.files) {
       //TODO improve error handling here or in the multer.js
-      return res.status(500).json("Picture didn't upload");
+      if (!req.files[0]) {
+        return res.status(500).json("Front Picture didn't upload");
+      }
+      if (!req.files[1]) {
+        return res.status(500).json("Back Picture didn't upload");
+      }
+      return res.status(500).json("The Pictures didn't upload");
     }
-    req.body.pictureUrl = req.file.path;
+    console.log(req.files);
+    req.body.pictureUrl = req.files.picture[0].path;
+    req.body.backPictureUrl = req.files.backPicture[0].path;
     const newProduct = await productServices.createProduct(req.body);
     res.status(201).json("Saved product: " + newProduct);
   } catch (error) {
