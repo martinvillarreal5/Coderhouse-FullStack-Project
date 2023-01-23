@@ -13,8 +13,6 @@ const getCart = async (req, res, next) => {
     const cart = await cartServices.getCart({ email: req.user.email });
     if (cart === null || cart.products.length < 1) {
       // null means the findOne query couldn't find a coincidence. i.e., the user doesnt have a cart yet
-      // or has one but without products.
-      //? Move this to service?
       return res.status(204).end();
     }
     res.status(200).json(cart);
@@ -51,6 +49,15 @@ const removeProductFromCart = async (req, res, next) => {
   }
 };
 
+const removeAllProductsFromCart = async (req, res, next) => {
+  try {
+    const cart = await cartServices.removeAllProductsFromCart(req.user.email);
+    res.status(200).json(cart);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const deleteCart = async (req, res, next) => {
   try {
     await cartServices.deleteCart(req.params.id);
@@ -67,4 +74,5 @@ export {
   addProductToCart,
   removeProductFromCart,
   deleteCart,
+  removeAllProductsFromCart,
 };

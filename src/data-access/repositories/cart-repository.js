@@ -32,6 +32,18 @@ class CartRepository extends BaseRepository {
     );
   }
 
+  /* async removeAllProducts(cartId) {
+    //? This operation is atomic.
+    return await this.model.findOneAndUpdate(
+      { _id: cartId },
+      { $set: { products: [] } },
+      {
+        runValidators: true,
+        new: true,
+      }
+    );
+  }
+ */
   async updateProductQuantity(cartId, productId, quantity) {
     // TODO test
     return await this.model.findOneAndUpdate(

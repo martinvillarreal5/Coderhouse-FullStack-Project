@@ -50,6 +50,19 @@ const removeProductFromCart = async (email, productId) => {
   return await CartRepository.removeProduct(cart._id, productId);
 };
 
+const removeAllProductsFromCart = async (email) => {
+  const cart = await CartRepository.getOne({ email: email });
+  if (!cart) {
+    throw new AppError(
+      "Invalid-Cart",
+      "User doesn't have a shopping cart yet.",
+      400,
+      true
+    );
+  }
+  logger.info({ cartId: cart._id }, "Removing All Products from Cart.");
+  return await CartRepository.updateById(cart._id, { products: [] });
+};
 const addProductToCart = async (email, productData) => {
   //TODO add new method for update quantity
   const { productId, quantity } = productData;
@@ -131,5 +144,6 @@ export default {
   getCarts,
   addProductToCart,
   removeProductFromCart,
+  removeAllProductsFromCart,
   deleteCart,
 };
