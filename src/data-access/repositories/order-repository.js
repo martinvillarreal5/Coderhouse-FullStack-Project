@@ -5,9 +5,6 @@ class OrderRepository extends BaseRepository {
   constructor() {
     super(OrderModel);
   }
-  getOrderCount = async () => {
-    return await this.model.countDocuments();
-  };
 }
 
 export default new OrderRepository();

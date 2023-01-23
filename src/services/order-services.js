@@ -7,6 +7,10 @@ export const getOrdersByEmail = async (email) => {
   return await orderRepository.getMany({ email: email });
 };
 
+export const getOrderById = async (id) => {
+  return await orderRepository.getById(id);
+};
+
 export const getAllOrders = async () => {
   return await orderRepository.getAll();
 };
@@ -23,7 +27,6 @@ export const createOrder = async (user) => {
   }
 
   const orderInfo = {
-    orderNumber: await orderRepository.getOrderCount(),
     email: user.email,
     products: cart.products,
     state: "generated",

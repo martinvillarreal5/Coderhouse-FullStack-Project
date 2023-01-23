@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-let itemSchema = new Schema({
+const orderItemSchema = new Schema({
   productId: {
     type: Schema.Types.ObjectId,
     ref: "Product",
@@ -29,12 +29,8 @@ let itemSchema = new Schema({
 const orderSchema = new Schema(
   {
     products: {
-      type: [itemSchema],
+      type: [orderItemSchema],
       default: undefined,
-      required: true,
-    },
-    orderNumber: {
-      type: Number,
       required: true,
     },
     state: {

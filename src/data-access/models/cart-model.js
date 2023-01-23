@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-let itemSchema = new Schema(
+const cartItemSchema = new Schema(
   {
     productId: {
       type: Schema.Types.ObjectId,
@@ -34,7 +34,7 @@ let itemSchema = new Schema(
 const cartSchema = new Schema(
   {
     products: {
-      type: [itemSchema],
+      type: [cartItemSchema],
       default: undefined,
     },
     email: {
