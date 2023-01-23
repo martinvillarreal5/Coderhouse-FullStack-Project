@@ -21,6 +21,14 @@ export const getUserOrders = async (req, res, next) => {
     next(error);
   }
 };
+export const getOrderById = async (req, res, next) => {
+  try {
+    const orders = await orderServices.getOrderById(req.params.id);
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const getAllOrders = async (req, res, next) => {
   try {
